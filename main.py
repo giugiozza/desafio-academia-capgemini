@@ -3,7 +3,11 @@ from utility.utility import *
 
 
 def main():
-    menu()
+    while True:
+        try:
+            menu()
+        except ValueError:
+            print("Apenas números são válidos. Tente novamente.")
 
 
 if __name__ == '__main__':
