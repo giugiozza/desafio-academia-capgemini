@@ -32,7 +32,6 @@ GROUP BY nome, cliente
 ''')
 
 
-
 RELATORIO_POR_CLIENTE = ('''
 SELECT *
 FROM anuncios

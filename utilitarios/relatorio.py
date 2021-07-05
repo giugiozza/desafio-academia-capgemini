@@ -1,6 +1,7 @@
 from utilitarios.estruturas import MENU_RELATORIOS
 from utilitarios.banco_de_dados import *
 from utilitarios.common import *
+from calculadora import calculadora
 
 
 def listar_relatorios(connection, query, filtros):
@@ -9,9 +10,11 @@ def listar_relatorios(connection, query, filtros):
         visualizacoes = 0
         cliques = 0
         compartilhamentos = 0
+
         # lista todos os registros
         if filtros is None:
-            connection.execute(RELATORIO_TOTAL)
+            retorno = connection.execute(RELATORIO_TOTAL)
+            calculadora(retorno)
 
             if (connection.execute(query).fetchall()):
                 pass
