@@ -25,4 +25,4 @@ def calculadora(investimento_diario):
         visualizacao_max += n_vis[i]
         clique_max += n_cliques[i]
 
-        return 
+        return visualizacao_max
