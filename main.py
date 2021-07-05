@@ -1,29 +1,45 @@
-import sqlite3
-from utility.utilitarios_do_menu import *
+from utilitarios.estruturas import *
+from utilitarios.banco_de_dados import *
+from utilitarios.cadastro import *
+from utilitarios.relatorio import *
 
 
 def main():
+
+    connection = conecta_bd()
+    cria_tabela(connection)
+
     while True:
         try:
-            opcao = menu()
-            if not opcao:
-                raise Exception
-            elif opcao == 1:
-                if cadastro_anuncio() == 1:
-                    cadastro_anuncio()
-                elif cadastro_anuncio() == 2:
+
+            opcao = input(MENU_PRINCIPAL)
+
+            if opcao.upper() == "I":
+                retorno = cadastrar_anuncio(connection)
+                if retorno == "N":
+                    cadastrar_anuncio(connection)
+                elif retorno == "M":
                     continue
-                else:
-                    print("Opção inválida! :(")
-            elif opcao == 2:
-                pass
-            elif opcao == 3:
+
+            elif opcao.upper() == 'R':
+                retorno = relatorio(connection)
+                if retorno.upper() == 'M':
+                    continue
+                elif retorno.upper() == '':
+                    pass
+                    # TODO
+
+            elif opcao.upper() == 'S':
                 print("\nAté mais!")
                 exit()
+
             else:
-                print("\nOpção inválida. Selecione um número dentre as opções do menu.")
+                print("\nOpção inválida. Selecione a letra correspondente entre as opções do menu.")
+
         except ValueError:
-            print("Apenas números são válidos. Tente novamente.")
+            print("Apenas letras são válidas. Tente novamente.") # TODO retirar?
+
+    connection.close()
 
 
 if __name__ == '__main__':
